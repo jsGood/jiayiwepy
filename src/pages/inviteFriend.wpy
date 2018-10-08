@@ -127,41 +127,72 @@
         })
     }
 
-    //绘制第1张图片
-    getFirstImg(){
+    //绘制大背景图
+    getBgImg(){
         return new Promise((resolve,reject)=>{
             wx.getImageInfo({
                 //src: '../images/template1.png',
                 src: 'https://up.enterdesk.com/edpic_source/28/13/e7/2813e7d4557faffc58ec9ee11e94175b.jpg',
                 success: res=>{
                   console.log(res);
-                  let ctx = wx.createCanvasContext('shareCanvas');
+                  let contex = wx.createCanvasContext('shareCanvas');
                   let imgWidth = res.width;
                   let imgHeight = res.height;
                   let width = this.screenWidth;
                   let height = (width/imgWidth)*imgHeight;
-                  ctx.drawImage(res.path, 0, 0, width, height);
-                  resolve(ctx);
-           
-                  //ctx.stroke();
-                  //ctx.draw();
+                  contex.drawImage(res.path, 0, 0, width, height);
+                  resolve(contex);
+                  contex.save();
+                  //contex.stroke();
+                  //contex.draw();
                 }
             });
         });
     }
 
     //绘制2张图片
-    getSecondImg(ctx, imgurl, x, y, width){
+    getImg1(contex, imgurl, x, y, width){
         return new Promise((resolve,reject)=>{
             wx.getImageInfo({
                 src: imgurl,
-                success (res) {
+                success: res=> {
                   //console.log(res);
                   let imgWidth = res.width;
                   let imgHeight = res.height;
                   let height = (width/imgWidth)*imgHeight;
-                  ctx.drawImage(res.path, x, y, width, height);
-                  resolve(ctx);
+
+                  contex.beginPath(); //开始绘制剪切圆形
+                  contex.arc(x+width/2, y+height/2, width/2, 0, Math.PI * 2, false);
+                  contex.stroke();//描边
+                  contex.clip();//画好了圆，剪切。原始画布中剪切任意形状和尺寸。一旦剪切了某个区域，则所有之后的绘图都会被限制在被剪切的区域内，这也是要save上下文的原因
+                  contex.drawImage(res.path, x, y, width, height);
+                  contex.restore();//恢复之前保存的绘图上下文 恢复之前保存的绘图上下午即状态 还可以继续绘制
+                  resolve(contex);
+                }
+            });
+        });
+    }
+
+    //绘制2张图片
+    getImg2(contex, imgurl, x, y, width){
+        return new Promise((resolve,reject)=>{
+            wx.getImageInfo({
+                src: imgurl,
+                success: res=>{
+                  contex.save();
+                  //console.log(res);
+                  let imgWidth = res.width;
+                  let imgHeight = res.height;
+                  let height = (width/imgWidth)*imgHeight;
+
+                  contex.beginPath(); //开始绘制剪切圆形
+                  contex.arc(x+width/2, y+height/2, width/2, 0, Math.PI * 2, false);
+                  contex.stroke();//描边
+                  contex.clip();//画好了圆，剪切。原始画布中剪切任意形状和尺寸。一旦剪切了某个区域，则所有之后的绘图都会被限制在被剪切的区域内，这也是要save上下文的原因
+
+                  contex.drawImage(res.path, x, y, width, height);
+                  contex.restore();//恢复之前保存的绘图上下文 恢复之前保存的绘图上下午即状态 还可以继续绘制
+                  resolve(contex);
                 }
             });
         });
@@ -169,25 +200,34 @@
 
 
     //绘制文字
-    getText(ctx){
+    getText(contex){
         return new Promise((resolve,reject)=>{
-            ctx.setTextAlign('center');    // 文字居中
-            ctx.setFillStyle('#fff');  // 文字颜色：黑色
-            ctx.setFontSize(14);         // 文字字号：22px
-            ctx.fillText("张三", 70, 380);
-            ctx.draw(true);
-            //var context = ctx.getContext('2d'); 
-            //var strDataURI = ctx.toDataURL("image/png");   
-            //console.log(strDataURI);
-     
-            ctx.setTextAlign('center');    // 文字居中
-            ctx.setFillStyle('#fff');  // 文字颜色：黑色
-            ctx.setFontSize(14);         // 文字字号：22px
-            let x = this.screenWidth - 50 - 20;
-            ctx.fillText("李四", x, 380);
-            ctx.draw(true);
+            //绘制本人用户名
+            contex.setTextAlign('center');    // 文字居中
+            contex.setFillStyle('#fff');  // 文字颜色：黑色
+            contex.setFontSize(14);         // 文字字号：22px
+            contex.fillText("王二毛子", this.screenWidth/2, 150);
+            contex.draw(true);
 
-            resolve(ctx);
+            //绘制第1个对比人物用户名
+            contex.setTextAlign('center');    // 文字居中
+            contex.setFillStyle('#fff');  // 文字颜色：黑色
+            contex.setFontSize(14);         // 文字字号：22px
+            contex.fillText("张三", 70, 380);
+            contex.draw(true);
+            //var context = contex.getContext('2d'); 
+            //var strDataURI = contex.toDataURL("image/png");   
+            //console.log(strDataURI);
+            
+            //绘制第2个对比人物用户名
+            contex.setTextAlign('center');    // 文字居中
+            contex.setFillStyle('#fff');  // 文字颜色：黑色
+            contex.setFontSize(14);         // 文字字号：22px
+            let x = this.screenWidth - 50 - 20;
+            contex.fillText("李四", x, 380);
+            contex.draw(true);
+
+            resolve(contex);
         });
     }
 
@@ -201,22 +241,23 @@
             }
         });
 
-        this.getFirstImg().then(ctx=>{
-          console.log(ctx);
+        this.getBgImg().then(contex=>{
+          console.log(contex);
+          let imgurl = 'http://y3.ifengimg.com/news_spider/dci_2013/09/b85234c4801f8b2d7771353867a7a0f8.jpg';
+          let x = (this.screenWidth - 90)/2;
+          return this.getImg1(contex, imgurl, x, 30, 90);
+        }).then(contex=>{
           let imgurl = 'http://jiayiworld-video.oss-cn-qingdao.aliyuncs.com/test/images/81i8RL6yVAZuvkiVLA7c.png';
-          return this.getSecondImg(ctx, imgurl, 10, 200, 130);
-        }).then(ctx=>{
+          return this.getImg2(contex, imgurl, 10, 200, 130);
+          //return this.getImg1(contex, imgurl, x, 200, 130);
+        }).then(contex=>{
           let imgurl = 'http://jiayiworld-video.oss-cn-qingdao.aliyuncs.com/test/images/tangli.png';
           let x = this.screenWidth - 10 - 130;
-          return this.getSecondImg(ctx, imgurl, x, 200, 130);
-        }).then(ctx=>{
-          let imgurl = 'http://y3.ifengimg.com/news_spider/dci_2013/09/b85234c4801f8b2d7771353867a7a0f8.jpg';
-          let x = (this.screenWidth - 120)/2;
-          return this.getSecondImg(ctx, imgurl, x, 450, 120);
-        }).then(ctx=>{
-          console.log(ctx);
+          return this.getImg2(contex, imgurl, x, 200, 130);
+        }).then(contex=>{
+          console.log(contex);
           util.loading('close');
-          return this.getText(ctx);
+          return this.getText(contex);
         });
 
     }
