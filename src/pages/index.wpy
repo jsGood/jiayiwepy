@@ -1,0 +1,747 @@
+<style lang="less">
+@fontsize32: 32rpx;
+@fontsize30: 30rpx;
+@fontsize28: 28rpx;
+@fontsize26: 26rpx;
+@color: #303030;
+@activecolor: #419BFF;
+page{ 
+  padding: 0 0 20rpx; 
+  color:  @color;
+}
+.cont-banner{
+   background-color: #ff3366;
+  .img{ width: 100%; }
+}
+.main{ 
+  overflow: hidden;
+}
+
+/* 总榜、周榜 */
+.cont-tab{
+  padding: 0 0 18rpx;
+  position: relative;
+  color: #fff;
+  .guize{ 
+    position: absolute;
+    left: 40rpx;
+    top: 25rpx;
+    font-size: 26rpx; 
+    background-color: #FE9FBB;
+    border-radius: 30rpx;
+    padding: 15rpx 40rpx;
+  }
+  .icon-search{
+    width: 50rpx;
+    position: absolute;
+    right: 40rpx;
+    top: 30rpx;
+  }
+  .tabs{ 
+    background-color: #FE6C96; 
+    display: flex; 
+    justify-content: center;
+    padding: 0 0 30rpx;
+    .list{
+      margin: 0 40rpx;
+      padding: 30rpx 0 5rpx;
+      font-size: @fontsize32;
+    }
+    .active{ border-bottom: solid 6rpx #fff; }
+  }
+  .items{
+    padding: 30rpx 0;
+    text-align: center;
+    font-size: 0;
+    .list{
+      display: inline-block;
+      width: 40%;
+      vertical-align: top;
+      font-size: @fontsize30;
+      height: 75rpx;
+      line-height: 75rpx;
+      margin: 0 18rpx;
+      background-color: #FE9FBB;
+      transform: skew(-30deg);
+      text{
+        display: block;
+        transform: skew(30deg);
+      }
+    }
+    .active{
+      background-color: #FB5488;
+    }
+  }
+  .time{ 
+    font-size: @fontsize26; 
+    color: #888; 
+    text-align: center;
+  }
+}
+
+/* 我的守护 */
+.cont-shouhu{
+  .c-title{
+    font-size: @fontsize32;
+    color: #FF659E;
+    padding: 40rpx 0 40rpx;
+    text-align: center;
+    &::before{
+      content: '';
+      display: inline-block;
+      margin: 0 20rpx 0 0;
+      width: 30rpx;
+      height: 30rpx;
+      background-color: #FF7398;
+      transform: rotate(45deg);
+    }
+    &::after{
+      content: '';
+      display: inline-block;
+      width: 30rpx;
+      height: 30rpx;
+      background-color: #FF7398;
+      transform: rotate(45deg);
+      margin: 0 0 0 20rpx;
+    }
+  }
+  .c-bodyer{
+      height: 150rpx;
+      overflow-y: hidden;
+      overflow-x: auto;
+      .box{ width: 500000px; }
+  }
+  .list{ 
+    float: left;
+    margin: 0 25rpx; 
+    text-align: center;
+    .t1{
+       float: left;
+       width: 140rpx;
+       height: 180rpx;
+       position: relative;
+      .img{ width: 100%; max-height: 100%; }
+      &::before{
+        content: '';
+        display: inline-block;
+        width: 0;
+        height: 100%;
+        vertical-align: bottom;
+      }
+    }
+    .t2{ 
+      float: left;
+      margin: 20rpx 0 0 20rpx;
+      text{ display: block; }
+      .s1{
+        font-size: 36rpx; 
+        color: #FF659E;
+      }
+      .s2{
+        font-size: 24rpx; 
+        color: #fff;
+        background-color: #8C2ED3;
+        border-radius: 20rpx;
+        padding: 10rpx 25rpx;
+        margin-top: 10rpx;
+      }
+    }
+  }
+}
+
+/* 前3名 */
+.cont-ranking{
+  display: flex;
+  width: 100%;
+  padding: 50rpx 0 50rpx;
+  .list{ 
+    width: 30%;
+    margin: 0 35rpx; 
+    text-align: center;
+    color: @color;
+    .t1{
+       height: 200rpx;
+       margin-top: 50rpx;
+       border: solid 2rpx @activecolor;
+       border-radius: 10rpx;
+       position: relative;
+       .icon-rank{ width: 60rpx; position: absolute; top: -30rpx; left:-25rpx;}
+      .img{ width: 100%; max-height: 100%; }
+      &::before{
+        content: '';
+        display: inline-block;
+        width: 0;
+        height: 100%;
+        vertical-align: bottom;
+      }
+    }
+    .t2{ font-size: @fontsize30; }
+    .t3{
+      font-size: @fontsize28; 
+      .icon{ width: 24rpx; vertical-align: middle; margin: -4rpx 0 0 8rpx; }
+    }
+    .btn{ display: inline-block; width: 150rpx; height: 58rpx; line-height: 58rpx; background-color: #419BFF; color: #fff; border-radius: 100rpx; font-size: @fontsize28; margin-top: 15rpx; }
+    &:nth-child(2){
+      width: 40%;
+      .t1{ 
+        height: 250rpx; margin-top: 0; 
+        .icon-rank{ width: 72rpx; top: -34rpx; left:-30rpx; }
+      }
+    }
+  }
+}
+
+/* 列表 */
+.cont-items{
+  margin: 0 0 20rpx;
+  color: #fff;
+  .list{
+    display: flex;
+    align-items: center;
+    padding: 70rpx 90rpx 0rpx;
+    border-bottom: solid 2rpx #ddd;
+    .left{
+      width: 85rpx; 
+      text-align: center;
+      color: #FB5488;
+      font-size: 40rpx; 
+      .icon{
+        width: 100%;
+        display: block;
+      }
+    }
+    .middle{
+      margin-left: 60rpx;
+      width: 200rpx;
+      height: 240rpx;
+      overflow: hidden;
+      .img{
+        display: block;
+        width: 100%;
+      }
+    }
+    .right{
+      width: 200rpx;
+      margin-left: 50rpx;
+      text-align: center;
+      .t1{ display: block; font-size: 36rpx; color: #FF659E; white-space: nowrap; }
+      .t2{
+        display: block; width: 100%; height: 60rpx; line-height: 60rpx; background-color: #8C2ED3; border-radius: 20rpx; font-size: 24rpx;
+        margin: 15rpx 0 20rpx;
+      }
+      .btn{ display: block; width: 100%; height: 60rpx; line-height: 60rpx; background-color: #FFB533; border-radius: 20rpx; font-size: 30rpx; color: #fff;
+        margin: 0;
+      }
+    }
+    &:nth-child(1){
+      .icon-number{
+        display:none;
+      }
+    }
+    &:nth-child(2){
+      .icon-number{
+        display:none;
+      }
+    }
+    &:nth-child(3){
+      .icon-number{
+        display:none;
+      }
+    }
+  }   
+}
+.loading{ 
+  text-align: center; 
+  padding: 15rpx 0;
+  margin-top: 20rpx;
+  .icon{ width: 40rpx; display: inline-block; }
+}
+
+
+.modalRedXJ{ 
+  .container{ 
+    .t2{ padding: 150rpx 0 100rpx; }
+    .imgbox{ 
+      width: 150rpx; height: 150rpx; margin-right: 30rpx; overflow: hidden;
+      .icon{ display: block; width: 100%; }
+    }
+  }
+}
+.modalRedXJKai{ 
+  .container{ 
+     padding: 160rpx 0 80rpx;
+     .touxiang{
+      width: 150rpx; 
+      height: 150rpx;
+      background: none;
+      .icon{ display: block; width: 100%; }
+    }
+    .t1{ padding: 50rpx 0 0; }
+    .t2{ 
+      padding: 10rpx 0 100rpx; 
+      font-size: @fontsize26;
+      font-weight: bold;
+      position: relative;
+      z-index: 9;
+      text{ display: inline-block; font-size: 38rpx; margin-right: 10rpx;}
+    }
+    .msg{ font-size: 24rpx; position:relative; z-index:2; padding: 20rpx 0 0; }
+    .btns{ padding: 60rpx 80rpx 0; }
+  }
+}
+
+.modalRedXN{ 
+  .container{ 
+    .t2{ padding: 150rpx 0 100rpx; }
+  }
+}
+.modalRedXNKai{ 
+  .container{ 
+    .msg{ font-size: 24rpx; position:relative; z-index:2; }
+    .btns{ padding: 20rpx 80rpx 0; }
+  }
+}
+</style>
+
+<template>
+
+    <!-- 现金红包弹窗 -->
+    <view class="modal modalRedXJ" hidden="{{isShowModalRedXJ}}">
+      <view class="container">
+        <image mode='widthFix' class="close" src="../images/close1.png" @tap="closeModalRedXJFn"/>
+        <view class="t2">收到一个现金红包</view>
+        <view class="btns"><image mode='widthFix' class="img" src="../images/kai.png" @tap="kaiRedXJFn"/></view>
+        <image mode='widthFix' class="bg" src="../images/hong1.png"/>
+      </view>
+    </view>
+    <!-- 开现金红包弹窗 -->
+    <!-- <view class="modal modalRedXJ modalRedXJKai" hidden="{{isShowModalRedXJKai}}"> -->
+    <view class="modal modalRedXJ modalRedXJKai" hidden="{{isShowModalRedXJKai}}">
+      <view class="container">
+        <image mode='widthFix' class="close" src="../images/close1.png" @tap="closeModalRedXJKaiFn"/>
+        <!-- <view class="touxiang"><image mode='widthFix' class="img" src="../images/bg1.png"/></view> -->
+        <view class="touxiang"><open-data class="icon" type="userAvatarUrl"></open-data></view>
+        <view class="t1">收到一个现金红包</view>
+        <view class="t2"><text>10</text> 元</view>
+        <view class="btns">
+          <!-- <text class="btn" @tap="linkMyRed(1)">邀请好友助力</text> -->
+          <button class='btn' open-type="share" data-redtype="1">邀请好友助力</button> 
+        </view>
+        <!-- <view class="msg">10个好友助力，直接微信红包提现</view> -->
+        <image mode='widthFix' class="bg" src="../images/hong1.png"/>
+      </view>
+    </view>
+
+    <!-- 星能红包弹窗 -->
+    <!-- <view class="modal modalRedXN" hidden="{{isShowModalRedXN}}"> -->
+    <view class="modal modalRedXN" hidden="{{isShowModalRedXN}}">
+      <view class="container">
+        <image mode='widthFix' class="close" src="../images/close1.png" @tap="closeModalRedXNFn"/>
+        <view class="t2">获得星能红包</view>
+        <view class="btns"><text class="btn" @tap="kaiRedXNFn">立即领取</text></view>
+        <image mode='widthFix' class="bg" src="../images/hong2.png"/>
+      </view>
+    </view>
+    <!-- 开星能红包弹窗 -->
+    <!-- <view class="modal modalRedXN modalRedXNKai" hidden="{{isShowModalRedXNKai}}"> -->
+    <view class="modal modalRedXN modalRedXNKai" hidden="{{isShowModalRedXNKai}}">
+      <view class="container">
+        <image mode='widthFix' class="close" src="../images/close1.png" @tap="closeModalRedXNKaiFn"/>
+        <view class="t2">恭喜获得星能 5</view>
+        <view class="msg">金额增长无上限的秘诀</view>
+        <view class="btns">
+          <!-- <text class="btn" @tap="linkMyRed(2)">邀请好友帮开</text> -->
+          <button class='btn' open-type="share" data-redtype="2">邀请好友帮开</button> 
+        </view>
+        <image mode='widthFix' class="bg" src="../images/hong2.png"/>
+      </view>
+    </view>
+
+  <view class="cont-banner"><image class='img' mode='widthFix' src='../images/first1.png'/></view>
+
+  <view class="main">
+
+    <!-- 我的守护 -->
+    <view class="cont-shouhu" wx:if="{{guard[0]&&guard.length>0}}">
+      <view class="c-title">我的守护</view>
+      <view class="c-bodyer">
+        <view class="box">
+            <view class="list" wx:for="{{guard}}" wx:key="" @tap="linkDabang({{item.workId}}, {{item.name}}, {{item.imageUrl}}, {{item.region}})">
+              <view class="t1"><image class='img' mode='widthFix' src='{{item.imageUrl}}'/></view>
+              <view class="t2">
+                <text class="s1">{{item.name}}</text>
+                <text class="s2">星能：{{item.starNum}}</text>
+              </view>
+            </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 总榜、周榜 -->
+    <view class="cont-tab">
+      <view class="guize" @tap="linkDabangGuize">规则</view>
+      <image class='icon-search' mode='widthFix' src='../images/icon-search2.png' @tap="linkSearch"/>
+      <view class="tabs">
+        <text class="list {{tabsActive==1?'active':''}}" @tap="getRankFn(1)">总榜单</text>
+        <text class="list {{tabsActive==2?'active':''}}" @tap="getRankFn(2)">周榜单</text>
+      </view>
+      <view class="items">
+        <view class="list {{typeActive==1?'active':''}}" @tap="getTypeFn(1)"><text>国漫榜</text></view>
+        <view class="list {{typeActive==2?'active':''}}" @tap="getTypeFn(2)"><text>日漫榜</text></view>   
+      </view>
+      <view class="time">{{time}}</view>
+    </view>
+
+    <!-- 排名列表 -->
+    <view class="cont-items">
+      <view class="list" wx:for="{{itemsArray}}" wx:key="" wx:if="{{item.activity}}">
+        <view class="left">
+          <image mode='widthFix' class="icon" src="../images/icon4.png" wx:if="{{index==0}}"/>
+          <image mode='widthFix' class="icon" src="../images/icon5.png" wx:if="{{index==1}}"/>
+          <image mode='widthFix' class="icon" src="../images/icon6.png" wx:if="{{index==2}}"/>
+          <text class="icon" wx:if="{{index>2}}">{{index+1}}</text>
+        </view>
+        <view class="middle">
+          <image class='img' mode='widthFix' src='{{item.imageUrl}}'/>
+        </view>
+        <view class="right">
+          <view class="t1">{{item.name}}</view>
+          <view class="t2">星能：{{item.starNum}}</view>
+          <button class='btn' @tap="linkDabang({{item.workId}}, {{item.name}}, {{item.imageUrl}}, {{item.region}})">打榜</button> 
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <view class="loading" hidden="{{showLoading}}"><image class='icon' mode='widthFix' src='../images/loading.gif'/></view>
+
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import {util} from '../js/util'
+
+  export default class Index extends wepy.page {
+
+    config = {
+      navigationBarTitleText: '动漫明星榜',
+      navigationBarBackgroundColor: '#ff3366',
+      navigationBarTextStyle: 'white'     
+    }
+
+    data = {
+      userInfo: {},
+      money: {},
+      isShowModalRedXJ: true,
+      isShowModalRedXJKai: true,
+      isShowModalRedXN: true,
+      isShowModalRedXNKai: true,
+      tabsActive: 1,//总榜、周榜tab高亮
+      typeActive: 1,//国漫、日漫tab高亮
+      qian3Array: [],//前3名
+      itemsArray: [],//总列表
+      totalRankloadMore: 1,//分页加载，每次加载10条
+      weekRankloadMore: 1,//分页加载，每次加载10条
+      guard: [],//我的守候
+      time: '',
+      showLoading: true,//是否显示loading图
+    }
+
+    methods = {
+      /* 分享给用户 */
+      onShareAppMessage(res) {
+          //console.log(res);
+          let userInfo = wx.getStorageSync('userInfo');  
+          let money = wx.getStorageSync('money');       
+          let uId = userInfo.uId;     
+          let avatar = userInfo.avatar;  
+          let userName = userInfo.userName;    
+          let redEnvelopeId = money.redEnvelopeId;
+          //let redType = this.$parent.globalData.redType;//红包类型，2：星能红包，1：现金红包
+          let options = 'uId=' + uId + '&avatar=' + avatar + '&userName=' + userName + '&redEnvelopeId=' + redEnvelopeId + '&redType=1' + '&source=2';
+          let shareTitle = '';
+          let shareImageUrl = '';
+          let path = '';
+          //console.log(res.target.dataset.redtype);
+          if (res.from === 'button') {//来自按钮转发
+              if(res.target.dataset.redtype==1){
+                  shareTitle = '[@你]为喜爱的动漫明星打榜，点开一起领10元现金红包～～';
+                  shareImageUrl = '../images/share-bg-xj.png';
+                  path = 'pages/friendKaiRedXJ?' + options;
+              }else{
+                  shareTitle = '[@你]为喜爱的动漫明星打榜，帮我点一下，奖金马上可以翻倍～～';
+                  shareImageUrl = '../images/share-bg-xn.png';
+                  path = 'pages/friendKaiRedXN?' + options;
+              }
+              return {
+                  title: shareTitle,
+                  imageUrl: shareImageUrl,
+                  path: path
+              }
+          }else{//来自页面转发 
+              return {
+                  title: '动漫明星榜，邀你一起来打榜，找到小伙伴',
+                  imageUrl: '../images/first1.png',
+                  path: 'pages/firstScreen'
+              }
+          }
+      },
+      //跳转我的红包页，1：微信红包页，2：星能红包页
+      linkMyRed(number){
+        if(number==1){
+          wx.navigateTo({
+            url: 'myWeixinRed'
+          });
+        }else{
+          wx.navigateTo({
+            url: 'myStarenergyRed'
+          });
+        }
+      },
+      //跳转打榜页
+      linkDabangGuize(){
+        wx.navigateTo({
+          url: 'dabangGuize'
+        });
+      },
+      //拆现金红包
+      kaiRedXJFn(){
+          let money = wx.getStorageSync('money');
+          //console.log(this.money);
+          let params = {
+              url: 'program/user/clickRedEnvelopes',
+              data: {
+                uId: this.userInfo.uId,
+                redEnvelopeId: money.redEnvelopeId,
+                source: 1,
+                type: 1,
+              }
+          };
+          util.$http(params).then(response=>{
+            console.log(response);
+            if(response.statusCode==200&&response.data.code=='0000'){
+              //this.isShowModalRedXJ = true;
+              //this.isShowModalRedXJKai = false;
+              //拆完红包，修改红包状态
+              money.state = 1;
+              wx.setStorageSync('money',money);
+              this.isShowModalRedXJ = true;
+              this.isShowModalRedXJKai = false;
+              this.setData({ 
+                isShowModalRedXJ: this.isShowModalRedXJ, 
+                isShowModalRedXJKai: this.isShowModalRedXJKai 
+              });
+            }
+          });
+      },
+      //拆星能红包
+      kaiRedXNFn(){
+          let money = wx.getStorageSync('money');
+          console.log(money);
+          let params = {
+              url: 'program/user/clickRedEnvelopes',
+              data: {
+                uId: this.userInfo.uId,
+                redEnvelopeId: money.redEnvelopeId,
+                source: 1,
+                type: 2,
+              }
+          };
+          util.$http(params).then(response=>{
+            console.log(response);
+            if(response.statusCode==200&&response.data.code=='0000'){
+              //this.isShowModalRedXJ = true;
+              //this.isShowModalRedXJKai = false;
+              //拆完红包，修改红包状态
+              money.state = 1;
+              wx.setStorageSync('money',money);
+              this.isShowModalRedXN = true;
+              this.isShowModalRedXNKai = false;
+              this.setData({ 
+                isShowModalRedXN: this.isShowModalRedXN, 
+                isShowModalRedXNKai: this.isShowModalRedXNKai 
+              });
+            }
+          });
+      },
+      closeModalRedXJFn(){
+        this.isShowModalRedXJ = true;
+      },
+      closeModalRedXJKaiFn(){
+        this.isShowModalRedXJKai = true;
+      },
+      closeModalRedXNFn(){
+        this.isShowModalRedXN = true;
+      },
+      closeModalRedXNKaiFn(){
+        this.isShowModalRedXNKai = true;
+      },
+      //跳转搜索页
+      linkSearch(){
+        wx.navigateTo({
+          url: 'search'
+        });
+      },
+      //跳转打榜页
+      linkDabang(workId,name,imageUrl,region){
+        let options = 'workId=' + workId + '&name=' + name + '&imageUrl=' + imageUrl + '&region=' + region
+        wx.navigateTo({
+          url: 'dabang?' + options
+        });
+      },
+      //切换月榜、周榜
+      getRankFn(index){
+        this.totalRankloadMore = 1;
+        this.weekRankloadMore = 1;
+        this.tabsActive = index;
+        if(index==1){
+          this.getTotalRank(1);
+        }else{
+          this.getWeekRank(1);
+        }
+      },
+      //切换国漫、日漫
+      getTypeFn(index){
+        this.totalRankloadMore = 1;
+        this.weekRankloadMore = 1;
+        this.typeActive = index;
+        if(this.tabsActive==1){
+          this.getTotalRank(1);
+        }else{
+          this.getWeekRank(1);
+        }
+      },
+      //上拉加载
+      onReachBottom(){
+        let loadMore;
+        //this.showLoading = false;
+        util.loading();
+        if(this.tabsActive==1){
+          this.totalRankloadMore = ++this.totalRankloadMore
+          loadMore = this.totalRankloadMore;
+        }else{
+          this.weekRankloadMore = ++this.weekRankloadMore
+          loadMore = this.weekRankloadMore;
+        }
+
+        console.log(loadMore);
+        for(let i=(loadMore-1)*10;i<loadMore*10;i++){
+          if(this.itemsArray[i]){
+            this.itemsArray[i].activity = true;
+          }   
+        } 
+        this.setData({ itemsArray: this.itemsArray});
+        setTimeout(()=>{
+          //this.setData({ showLoading: true });
+          util.loading('close');
+        },200);
+      }
+    }
+    //月榜
+    getTotalRank(loadMoreNumber){
+      let that = this;
+      ///console.log('月榜');
+      //console.log(this.userInfo);
+      let params = {
+          url: 'program/rank/totalRanking',
+          data: {
+            type: 1,
+            region: this.typeActive, //1：国漫，2：日漫
+            uId: this.userInfo.uId,
+          }
+      };
+      //console.log(params);
+
+      util.$http(params).then(response=>{
+        //console.log(response);
+        if(response.statusCode==200&&response.data.code=='0000'){
+          if(response.data.data.guard){
+              this.guard = response.data.data.guard;
+              this.setData({ guard: this.guard });
+          }
+          let result = response.data.data.roleRankNum;
+          //this.qian3Array = result.slice(0,3);
+          //this.itemsArray = result.slice(3,200);
+          this.itemsArray = result;
+          this.time = response.data.data.time;
+          for(let i=0;i<loadMoreNumber*10;i++){
+            that.itemsArray[i].activity = true;
+          } 
+          this.setData({
+            //qian3Array: this.qian3Array,
+            itemsArray: this.itemsArray,
+            time: this.time
+          });
+          //this.itemsArray = this.itemsArray;
+          //console.log(this.itemsArray);
+        }
+        
+      });
+    }
+
+    //周榜
+    getWeekRank(loadMoreNumber){
+      let that = this;
+      console.log('周榜');
+      //console.log(this.userInfo);
+      let params = {
+          url: 'program/rank/weekRanking',
+          data: {
+            type: 2,
+            region: this.typeActive, //1：国漫，2：日漫
+            uId: this.userInfo.uId,
+          }
+      };
+      //console.log(params);
+      util.$http(params).then(response=>{
+        //console.log(response);
+        if(response.statusCode==200&&response.data.code=='0000'){
+          if(response.data.data.guard){
+              this.guard = response.data.data.guard;
+          }
+          let result = response.data.data.roleRankNum;
+          //this.qian3Array = result.slice(0,3);
+          //this.itemsArray = result.slice(3,200);
+          this.itemsArray = result;
+          this.time = response.data.data.time;
+          for(let i=0;i<loadMoreNumber*10;i++){
+            that.itemsArray[i].activity = true;
+          } 
+          this.setData({
+            //qian3Array: this.qian3Array,
+            itemsArray: this.itemsArray,
+            time: this.time
+          });
+          //this.itemsArray = this.itemsArray;
+          //console.log(this.itemsArray);
+        }
+        
+      });
+    }
+
+    onLoad() {
+        let money = wx.getStorageSync('money');
+        console.log(money);
+         if(money&&money.type==1){
+            this.isShowModalRedXJ = false;
+            this.setData({ isShowModalRedXJ: this.isShowModalRedXJ });
+         }
+         if(money&&money.type==2){
+            this.isShowModalRedXN = false;
+            this.setData({ isShowModalRedXN: this.isShowModalRedXN });
+         }
+        //let userInfo = this.$parent.globalData.userInfo;
+        let userInfo = wx.getStorageSync('userInfo');
+        //console.log(userInfo);
+        this.userInfo = userInfo;
+        this.money = money;
+        this.setData({
+          userInfo: this.userInfo,
+          money: this.money
+        });
+        this.getTotalRank(1);
+    }
+    
+  }
+</script>
