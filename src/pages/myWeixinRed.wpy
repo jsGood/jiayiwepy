@@ -155,6 +155,19 @@ page{
       </view>
     </view>
 
+    <!-- 弹窗兑换奖品 -->
+    <view class="modal modalGuize" hidden="{{isModalDuihuan}}">
+      <view class="container">
+        <view class="m-title">兑换规则</view>
+        <view class="t1">10元代金券是动漫明星榜兑换礼品的虚拟积分。</view>
+        <view class="t1">有效期2018年11月30日。</view>
+        <view class="t1">兑换周边礼品日期：2018年10月20日。</view>
+        <view class="t1">动漫周边10元代金券可以兑换相应的周边礼品。</view>
+        <view class="t1">目前周边礼品有玩具手办、模型、抱枕图书</view>
+        <view class="btns"><text class="btn" @tap="closeModalDuihuan">我知道了！</text></view>
+      </view>
+    </view>
+
     <view class="cont-guize" @tap="showModalGuizeFn">
       <image mode='widthFix' class="icon" src="../images/icon1.png"/>
       <text>活动规则</text>
@@ -191,7 +204,9 @@ page{
     <view class="cont-btn">
       <view class="btns">
         <button class='btn' open-type="share" wx:if="{{!isGuoqiRed}}">邀请好友助力</button> 
-        <button class='btn disable' wx:if="{{isGuoqiRed}}">红包已过期</button>
+        <button class='btn disable' wx:if="{{isGuoqiRed<10&&isGuoqiRed}}">红包已过期</button>
+        <!-- <button class='btn' wx:if="{{isGuoqiRed>=10}}" @tap="showModalDuihuan">兑换奖品</button> -->
+        <button class='btn' wx:if="{{isGuoqiRed>=10}}" @tap="showModalDuihuan">兑换奖品</button>
       </view>
     </view>
 
@@ -215,9 +230,18 @@ page{
       isGuoqiRed: '',//红包是否过期
       friendsArray: [],//好友列表
       redEnvelopeId: '',
+      isModalDuihuan: true,//弹窗兑换奖品
     }
 
     methods = {
+      //弹窗兑换奖品
+      showModalDuihuan(){
+        this.isModalDuihuan = false;
+      },
+      closeModalDuihuan(){
+        this.isModalDuihuan = true;
+        this.setData({isModalDuihuan: true});
+      },
       showModalGuizeFn(){
         this.isShowModalGuize = false;
       },

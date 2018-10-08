@@ -121,6 +121,7 @@ export default class extends wepy.app {
   config = {
     pages: [
       'pages/firstScreen',//小程序首屏
+      'pages/myWeixinRed',
       'pages/inviteFriend',
       'pages/index',
       'pages/dabang',
@@ -132,7 +133,6 @@ export default class extends wepy.app {
       'pages/applyInclude',
       'pages/shareRed',
       'pages/myStarenergyRed',
-      'pages/myWeixinRed',
       'pages/dabangGuize',
       'pages/myStarenergy',
       'pages/kefu',
