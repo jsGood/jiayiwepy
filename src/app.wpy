@@ -121,7 +121,7 @@ setStore(store)
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/firstScreen',//小程序首屏
+      'pages/firstScreen',//首屏
       'pages/index',
       'pages/inviteFriend',
       'pages/dabang',
