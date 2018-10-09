@@ -56,7 +56,7 @@ page{
 }
 
 .cont-1{
-  padding: 40rpx 40rpx;
+  padding: 40rpx 30rpx;
   background-color: #9336d9;
   color: #fff;
   position: relative;
@@ -75,9 +75,9 @@ page{
   }
   .row1{ 
     .touxiang{
-      width: 140rpx; 
-      height: 140rpx;
-      margin-right: 40rpx; 
+      width: 130rpx; 
+      height: 130rpx;
+      margin-right: 30rpx; 
       border: solid 2rpx @activecolor;
       border-radius: 50%;
       overflow: hidden;
@@ -85,12 +85,13 @@ page{
     }
     .nickbox{ 
       display: inline-block;
-      .text{ font-size: @fontsize28; }
+      .text{ font-size: @fontsize26; }
     }
   }
   .row2{
+    flex: 1;
     margin-top: -40rpx;
-    padding: 0 0 0 40rpx;
+    padding: 0 0 0 30rpx;
     .s1{ 
       font-size: 40rpx;
       padding: 0 0 20rpx;
@@ -98,9 +99,8 @@ page{
     .s2{ 
       font-size: @fontsize28;
     }
-    .btn{ display: block; float: right; padding: 0 45rpx; height: 60rpx; line-height: 60rpx; background-color: #419BFF; color: #fff; border-radius: 100rpx; 
-      font-size: 30rpx; }
   }
+  .btn{ display: block; width: 160rpx; }
 }
 
 .cont-2{ 
@@ -349,8 +349,8 @@ page{
         <view class="row2">
             <view class="s1">今日贡献<text> {{todayGongxian}} </text>星能</view>
             <view class="s2">累计守护<text>{{signNumber}}</text>天，贡献<text>{{totalGongxian}}</text>星能</view>
-          <!-- <button class='btn' @tap="linkInvitingFriends">邀请好友</button>  -->
         </view>
+        <image class="btn" mode='widthFix' src="../images/btn2.png" @tap="linkInvitingFriends"/>
       </view>
     </view>
 
@@ -384,7 +384,7 @@ page{
       </view>
     </view>
 
-    <image mode='widthFix' class="img-chai" src="../images/chai1.png" @tap="linkMyStarenergyRed" wx:if="{{noHongbao}}"/>
+    <image mode='widthFix' class="img-chai" src="../images/chai1.png" @tap="linkMyStarenergyRed" wx:if="{{isChaiState==0}}"/>
 
 </template>
 
@@ -426,8 +426,11 @@ page{
 
     methods = {
         linkInvitingFriends(){
+          let workId = this.workId;
+          let region = this.region;
+          let options = 'workId=' + workId + '&region=' + region;
           wx.navigateTo({
-            url: 'inviteFriend'
+            url: 'inviteFriend?'+options
           });
         },
         closeModalDabang(){
@@ -542,8 +545,8 @@ page{
 
             this.fansNum = response.data.data.fansNum;//被打榜的人物粉丝数量
             this.myRankNum = response.data.data.myRankNum;//我的排名
-            this.starNum = response.data.data.roleDetails.starNum;//被打榜的人物本月星能值
-            this.rowNum = response.data.data.roleDetails.rowNum;//被打榜的人物本月排名
+            this.starNum = response.data.data.roleDetails?response.data.data.roleDetails.starNum:'---';//被打榜的人物本月星能值
+            this.rowNum = response.data.data.roleDetails?response.data.data.roleDetails.rowNum:'---';//被打榜的人物本月排名
 
             this.fansRankArray = response.data.data.fansRank;
             this.exceed = response.data.data.exceed;
@@ -568,30 +571,30 @@ page{
 
     //判断是否有星能红包，如果有就跳转我的星能红包页
     isHasStarenergyRed(){
-        let userInfo = wx.getStorageSync('userInfo');
-        let params = {
-            url: 'program/user/getMyStarNumList',
-            data: {
-              uId: userInfo.uId,
-              source: 1, 
-              type: 2,//1：星能红包
-            }
-        };
-        util.$http(params).then(response=>{
-          //console.log(response);
-          if(response.statusCode==200&&response.data.code=='8006'){//如果没有星能红包
-              this.noHongbao = false; 
-              this.setData({noHongbao: this.noHongbao});
-          }else if(response.statusCode==200&&response.data.code=='0000'){//如果没有星能红包
-              this.noHongbao = true; 
-              this.setData({noHongbao: this.noHongbao});
-          }
-        });
+        // let userInfo = wx.getStorageSync('userInfo');
+        // let params = {
+        //     url: 'program/user/getMyStarNumList',
+        //     data: {
+        //       uId: userInfo.uId,
+        //       source: 1, 
+        //       type: 2,//1：星能红包
+        //     }
+        // };
+        // util.$http(params).then(response=>{
+        //   //console.log(response);
+        //   if(response.statusCode==200&&response.data.code=='8006'){//如果没有星能红包
+        //       this.noHongbao = false; 
+        //       this.setData({noHongbao: this.noHongbao});
+        //   }else if(response.statusCode==200&&response.data.code=='0000'){//如果没有星能红包
+        //       this.noHongbao = true; 
+        //       this.setData({noHongbao: this.noHongbao});
+        //   }
+        // });
     }
 
     onLoad(options) {
-      console.log('刷新2');
-      console.log(options);
+      //console.log('刷新2');
+      //console.log(options);
       let workId = options.workId;
       let name = options.name;
       let imageUrl = options.imageUrl;
@@ -603,6 +606,12 @@ page{
       this.name = name;
       this.imageUrl = imageUrl;
       this.region = region;
+      this.setData({
+        workId: this.workId,
+        name: this.name,
+        imageUrl: this.imageUrl,
+        region: this.region,
+      });
 
       wx.setNavigationBarTitle({title: name})
 

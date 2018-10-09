@@ -16,6 +16,7 @@ button{
 .btns{ 
   text-align: center;
   .btn{ display: block; height: 90rpx; line-height: 90rpx; background-color: #419BFF; color: #fff; border-radius: 100rpx; font-size: 32rpx; }
+  .cancel{ background-color: #ccc; }
 }
 
 .modal{ 
@@ -121,10 +122,10 @@ export default class extends wepy.app {
   config = {
     pages: [
       'pages/firstScreen',//小程序首屏
-      'pages/myWeixinRed',
-      'pages/inviteFriend',
       'pages/index',
+      'pages/inviteFriend',
       'pages/dabang',
+      'pages/myWeixinRed',
       'pages/me',
       'pages/search',
       'pages/friendKaiRedXN',

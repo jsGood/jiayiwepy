@@ -204,9 +204,9 @@ page{
     <view class="cont-btn">
       <view class="btns">
         <button class='btn' open-type="share" wx:if="{{!isGuoqiRed}}">邀请好友助力</button> 
-        <button class='btn disable' wx:if="{{isGuoqiRed<10&&isGuoqiRed}}">红包已过期</button>
+        <button class='btn disable' wx:if="{{friendsArray.length<10&&isGuoqiRed}}">红包已过期</button>
         <!-- <button class='btn' wx:if="{{isGuoqiRed>=10}}" @tap="showModalDuihuan">兑换奖品</button> -->
-        <button class='btn' wx:if="{{isGuoqiRed>=10}}" @tap="showModalDuihuan">兑换奖品</button>
+        <button class='btn' wx:if="{{friendsArray.length>=10}}" @tap="showModalDuihuan">兑换奖品</button>
       </view>
     </view>
 
