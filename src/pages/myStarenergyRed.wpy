@@ -173,8 +173,9 @@ page{
         </label>
       </checkbox-group> -->
       <view class="btns">
-        <button class='btn' open-type="share" wx:if="{{isChaiState==0}}">邀请好友帮开</button> 
-        <button class='btn cancel' wx:else>邀请好友帮开</button> 
+<!--         <button class='btn' open-type="share" wx:if="{{isChaiState==0}}">邀请好友帮开</button> 
+        <button class='btn cancel' wx:else>邀请好友帮开</button>  -->
+        <button class='btn' open-type="share">邀请好友帮开</button> 
       </view>
     </view>
 

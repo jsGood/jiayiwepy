@@ -161,7 +161,7 @@ page{
         <view class="m-title">兑换规则</view>
         <view class="t1">10元代金券是动漫明星榜兑换礼品的虚拟积分。</view>
         <view class="t1">有效期2018年11月30日。</view>
-        <view class="t1">兑换周边礼品日期：2018年10月20日。</view>
+        <view class="t1">兑换周边礼品日期：2018年10月31日。</view>
         <view class="t1">动漫周边10元代金券可以兑换相应的周边礼品。</view>
         <view class="t1">目前周边礼品有玩具手办、模型、抱枕图书</view>
         <view class="btns"><text class="btn" @tap="closeModalDuihuan">我知道了！</text></view>

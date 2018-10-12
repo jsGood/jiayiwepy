@@ -1,6 +1,5 @@
 const util = {
 	//api: 'http://192.168.0.104:8090/', 
-    //api: 'http://192.168.0.88:8443/', 
     api: 'https://api.jiayiworld.com/', 
     //api: 'https://test.jiayiworld.com/',    
     data: {
