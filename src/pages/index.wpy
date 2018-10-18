@@ -5,247 +5,171 @@
 @fontsize26: 26rpx;
 @color: #303030;
 @activecolor: #419BFF;
+@rotate: 15deg;
 page{ 
   padding: 0 0 20rpx; 
   color:  @color;
 }
 .cont-banner{
-   background-color: #ff3366;
-  .img{ width: 100%; }
+  .img{ display: block; width: 100%; }
 }
 .main{ 
   overflow: hidden;
 }
 
+.cont-search{ 
+  padding: 20rpx 20rpx; 
+  .icon-search{ width: 26rpx; position: absolute; top: 40rpx; left: 32rpx; z-index: 2; } 
+  .box{ display: flex; }
+  .searchkey{ flex: 1; padding: 0 0 0 55rpx; font-size: 28rpx; height: 68rpx; background-color: #f1f1f2; border-radius: 16rpx; }
+  .placeholder{ color: #999; font-size: @fontsize26; }
+}
+
+.cont-guanzhu{ 
+    margin: 0rpx 0 -70rpx;
+    .box{ 
+      display: flex; 
+      justify-content: flex-end;
+      align-items: center;
+      transform: translate(170rpx,0);
+      transition: 0.3s;
+    }
+    .icon1{ width: 80rpx; margin-right: -20rpx; position: relative; z-index: 2; animation: guanzhu 1.5s linear infinite; transform: rotate(@rotate); }
+    .icon2{ width: 220rpx; }
+    &.active{
+      .box{ transform: translate(0,0); }
+    }
+}
+
+@keyframes guanzhu{
+  0%{ transform: rotate(@rotate); }
+  25%{ transform: rotate(0); }
+  50%{ transform: rotate(-@rotate); }
+  75%{ transform: rotate(0s); }
+  100%{ transform: rotate(@rotate); }
+}
 /* 总榜、周榜 */
 .cont-tab{
   padding: 0 0 18rpx;
   position: relative;
-  color: #fff;
-  .guize{ 
+  .duihuan{ 
     position: absolute;
-    left: 40rpx;
-    top: 25rpx;
-    font-size: 26rpx; 
-    background-color: #FE9FBB;
+    left: 440rpx;
+    top: 0rpx;
+    font-size: 38rpx;
     border-radius: 30rpx;
-    padding: 15rpx 40rpx;
-  }
-  .icon-search{
-    width: 50rpx;
-    position: absolute;
-    right: 40rpx;
-    top: 30rpx;
+    color: #999;
   }
   .tabs{ 
-    background-color: #FE6C96; 
-    display: flex; 
-    justify-content: center;
-    padding: 0 0 30rpx;
+    display: inline-block; 
+    padding: 0 0 10rpx;
+    color: #999;
     .list{
       margin: 0 40rpx;
       padding: 30rpx 0 5rpx;
-      font-size: @fontsize32;
+      font-size: 38rpx;
     }
-    .active{ border-bottom: solid 6rpx #fff; }
+    .active{ color: #000; }
   }
   .items{
-    padding: 30rpx 0;
+    display: flex;
+    justify-content: center;
+    padding: 30rpx 24rpx;
     text-align: center;
     font-size: 0;
     .list{
-      display: inline-block;
-      width: 40%;
-      vertical-align: top;
-      font-size: @fontsize30;
-      height: 75rpx;
-      line-height: 75rpx;
-      margin: 0 18rpx;
-      background-color: #FE9FBB;
-      transform: skew(-30deg);
-      text{
-        display: block;
-        transform: skew(30deg);
-      }
+      width: 33%;
+      height: 80rpx;
+      padding: 11rpx;
+      image{ width: 100%; height: 100%; }
     }
-    .active{
-      background-color: #FB5488;
+    .active{ 
+      image{ transform: scale(1.12); } 
     }
   }
-  .time{ 
-    font-size: @fontsize26; 
-    color: #888; 
-    text-align: center;
+  .item3{
+    position: relative;
+    font-size: 24rpx;
+    padding: 0 24rpx;
+    .time{ 
+      color: #888; 
+    }
+    .guize{ 
+      float: right;
+      color: #FF7F7F;
+    }
   }
 }
 
 /* 我的守护 */
 .cont-shouhu{
   .c-title{
-    font-size: @fontsize32;
-    color: #FF659E;
-    padding: 40rpx 0 40rpx;
-    text-align: center;
-    &::before{
-      content: '';
-      display: inline-block;
-      margin: 0 20rpx 0 0;
-      width: 30rpx;
-      height: 30rpx;
-      background-color: #FF7398;
-      transform: rotate(45deg);
-    }
-    &::after{
-      content: '';
-      display: inline-block;
-      width: 30rpx;
-      height: 30rpx;
-      background-color: #FF7398;
-      transform: rotate(45deg);
-      margin: 0 0 0 20rpx;
-    }
+    font-size: @fontsize28;
+    color: #333;
+    padding: 20rpx 24rpx 18rpx;
   }
   .c-bodyer{
-      height: 150rpx;
-      overflow-y: hidden;
+      height: 120rpx;
+      padding: 0 12rpx;
       overflow-x: auto;
       .box{ width: 500000px; }
   }
   .list{ 
     float: left;
-    margin: 0 25rpx; 
+    margin: 0 10rpx; 
     text-align: center;
     .t1{
        float: left;
-       width: 140rpx;
-       height: 180rpx;
-       position: relative;
-      .img{ width: 100%; max-height: 100%; }
-      &::before{
-        content: '';
-        display: inline-block;
-        width: 0;
-        height: 100%;
-        vertical-align: bottom;
-      }
-    }
-    .t2{ 
-      float: left;
-      margin: 20rpx 0 0 20rpx;
-      text{ display: block; }
-      .s1{
-        font-size: 36rpx; 
-        color: #FF659E;
-      }
-      .s2{
-        font-size: 24rpx; 
-        color: #fff;
-        background-color: #8C2ED3;
-        border-radius: 20rpx;
-        padding: 10rpx 25rpx;
-        margin-top: 10rpx;
-      }
-    }
-  }
-}
-
-/* 前3名 */
-.cont-ranking{
-  display: flex;
-  width: 100%;
-  padding: 50rpx 0 50rpx;
-  .list{ 
-    width: 30%;
-    margin: 0 35rpx; 
-    text-align: center;
-    color: @color;
-    .t1{
-       height: 200rpx;
-       margin-top: 50rpx;
-       border: solid 2rpx @activecolor;
-       border-radius: 10rpx;
-       position: relative;
-       .icon-rank{ width: 60rpx; position: absolute; top: -30rpx; left:-25rpx;}
-      .img{ width: 100%; max-height: 100%; }
-      &::before{
-        content: '';
-        display: inline-block;
-        width: 0;
-        height: 100%;
-        vertical-align: bottom;
-      }
-    }
-    .t2{ font-size: @fontsize30; }
-    .t3{
-      font-size: @fontsize28; 
-      .icon{ width: 24rpx; vertical-align: middle; margin: -4rpx 0 0 8rpx; }
-    }
-    .btn{ display: inline-block; width: 150rpx; height: 58rpx; line-height: 58rpx; background-color: #419BFF; color: #fff; border-radius: 100rpx; font-size: @fontsize28; margin-top: 15rpx; }
-    &:nth-child(2){
-      width: 40%;
-      .t1{ 
-        height: 250rpx; margin-top: 0; 
-        .icon-rank{ width: 72rpx; top: -34rpx; left:-30rpx; }
-      }
+       width: 80rpx;
+       height: 80rpx;
+       border-radius: 50%;
+       overflow: hidden;
+      .img{ width: 100%; }
     }
   }
 }
 
 /* 列表 */
 .cont-items{
-  margin: 0 0 20rpx;
-  color: #fff;
+  margin: 0 24rpx 20rpx;
   .list{
     display: flex;
     align-items: center;
-    padding: 70rpx 90rpx 0rpx;
-    border-bottom: solid 2rpx #ddd;
+    padding: 70rpx 10rpx 10rpx;
+    box-shadow:0px 2px 20px 0px rgba(232,232,232,0.5);
     .left{
-      width: 85rpx; 
+      width: 80rpx; 
       text-align: center;
-      color: #FB5488;
+      color: #666;
       font-size: 40rpx; 
-      .icon{
-        width: 100%;
-        display: block;
-      }
+      .icon{ width: 100%; display: block; }
     }
     .middle{
-      margin-left: 60rpx;
-      width: 200rpx;
-      height: 240rpx;
+      margin-left: 40rpx;
+      width: 170rpx;
       overflow: hidden;
-      .img{
-        display: block;
-        width: 100%;
-      }
+      .imgbox{ width: 120rpx; height: 120rpx; border-radius: 50%; background-color: #eee; overflow: hidden; margin: auto; }
+      .img{ display: block; width: 100%; }
+      .name{ font-size: 24rpx; text-align: center; padding: 5rpx 0 0; }
+    }
+    .middle1{
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      margin-left: 40rpx;
+      .icon{ width: 22rpx; position: relative; top: -4rpx; }
+      .s1{ font-size: 24rpx; white-space: nowrap; }
+      .xn{ font-size: 70rpx; margin-bottom: -13rpx; }
     }
     .right{
-      width: 200rpx;
-      margin-left: 50rpx;
-      text-align: center;
-      .t1{ display: block; font-size: 36rpx; color: #FF659E; white-space: nowrap; }
-      .t2{
-        display: block; width: 100%; height: 60rpx; line-height: 60rpx; background-color: #8C2ED3; border-radius: 20rpx; font-size: 24rpx;
-        margin: 15rpx 0 20rpx;
-      }
-      .btn{ display: block; width: 100%; height: 60rpx; line-height: 60rpx; background-color: #FFB533; border-radius: 20rpx; font-size: 30rpx; color: #fff;
-        margin: 0;
-      }
+      width: 120rpx;
+      margin-left: 40rpx;
+      .icon{ display: block; width: 100%; }
     }
-    &:nth-child(1){
-      .icon-number{
-        display:none;
-      }
-    }
-    &:nth-child(2){
-      .icon-number{
-        display:none;
-      }
-    }
-    &:nth-child(3){
-      .icon-number{
-        display:none;
+    &:nth-child(1), &:nth-child(2), &:nth-child(3){
+      .icon-number{ display:none; }
+      .middle{
+        .imgbox{ width: 100%; height: auto; border-radius: 0; }
       }
     }
   }   
@@ -357,9 +281,24 @@ page{
       </view>
     </view>
 
-  <view class="cont-banner"><image class='img' mode='widthFix' src='../images/first1.png'/></view>
+
+  <view class='cont-search' @tap="linkSearch">
+      <image class='icon-search' mode='widthFix' src='../images/icon-search0.png'/>
+      <view class='box'>
+          <input class='searchkey' disabled placeholder-class="placeholder" placeholder='输入动漫人物名称'/>
+      </view>
+  </view>
+
+  <view class="cont-banner"><image class='img' mode='widthFix' src='../images/banner1.png'/></view>
 
   <view class="main">
+
+    <view class="cont-guanzhu {{guanzhuActive?'active':''}}">
+        <view class="box">
+          <image class="icon1" mode='widthFix' src="../images/icon-guanzhu1.png" @tap="guanzhuFn"/>
+          <image class="icon2" mode='widthFix' src="../images/icon-guanzhu2.png"/>
+        </view>
+    </view>
 
     <!-- 我的守护 -->
     <view class="cont-shouhu" wx:if="{{guard[0]&&guard.length>0}}">
@@ -368,10 +307,6 @@ page{
         <view class="box">
             <view class="list" wx:for="{{guard}}" wx:key="" @tap="linkDabang({{item.workId}}, {{item.name}}, {{item.imageUrl}}, {{item.region}})">
               <view class="t1"><image class='img' mode='widthFix' src='{{item.imageUrl}}'/></view>
-              <view class="t2">
-                <text class="s1">{{item.name}}</text>
-                <text class="s2">星能：{{item.starNum}}</text>
-              </view>
             </view>
         </view>
       </view>
@@ -379,35 +314,56 @@ page{
 
     <!-- 总榜、周榜 -->
     <view class="cont-tab">
-      <view class="guize" @tap="linkDabangGuize">规则</view>
-      <image class='icon-search' mode='widthFix' src='../images/icon-search2.png' @tap="linkSearch"/>
+      <view class="duihuan">周边兑换</view>
       <view class="tabs">
         <text class="list {{tabsActive==1?'active':''}}" @tap="getRankFn(1)">总榜单</text>
         <text class="list {{tabsActive==2?'active':''}}" @tap="getRankFn(2)">周榜单</text>
       </view>
       <view class="items">
-        <view class="list {{typeActive==1?'active':''}}" @tap="getTypeFn(1)"><text>国漫榜</text></view>
-        <view class="list {{typeActive==2?'active':''}}" @tap="getTypeFn(2)"><text>日漫榜</text></view>   
+        <view class="list {{typeActive==1?'active':''}}" @tap="getTypeFn(1)"><image mode='widthFix' src="../images/tab1.png"/></view>
+        <view class="list {{typeActive==2?'active':''}}" @tap="getTypeFn(2)"><image mode='widthFix' src="../images/tab2.png"/></view>   
+        <view class="list {{typeActive==3?'active':''}}" @tap="getTypeFn(3)"><image mode='widthFix' src="../images/tab3.png"/></view>  
       </view>
-      <view class="time">{{time}}</view>
+
+<!--       <swiper indicator-dots="{{indicatorDots}}" duration="{{duration}}">   
+          <swiper-item>
+            1
+          </swiper-item>
+          <swiper-item>
+            2
+          </swiper-item>
+          <swiper-item>
+            3
+          </swiper-item>
+      </swiper> -->
+
+      <view class="item3">
+          <text class="time">{{time}}</text>
+          <text class="guize" @tap="linkDabangGuize">规则</text>
+      </view>
+
     </view>
 
     <!-- 排名列表 -->
     <view class="cont-items">
-      <view class="list" wx:for="{{itemsArray}}" wx:key="" wx:if="{{item.activity}}">
+      <view class="list" wx:for="{{itemsArray}}" wx:key="" wx:if="{{item.activity}}" @tap="linkDabang({{item.workId}}, {{item.name}}, {{item.imageUrl}}, {{item.region}})">
         <view class="left">
           <image mode='widthFix' class="icon" src="../images/icon4.png" wx:if="{{index==0}}"/>
           <image mode='widthFix' class="icon" src="../images/icon5.png" wx:if="{{index==1}}"/>
           <image mode='widthFix' class="icon" src="../images/icon6.png" wx:if="{{index==2}}"/>
           <text class="icon" wx:if="{{index>2}}">{{index+1}}</text>
         </view>
-        <view class="middle" @tap="linkDabang({{item.workId}}, {{item.name}}, {{item.imageUrl}}, {{item.region}})">
-          <image class='img' mode='widthFix' src='{{item.imageUrl}}'/>
+        <view class="middle">
+          <view class='imgbox'><image class='img' mode='widthFix' src='{{item.imageUrl}}'/></view>
+          <view class="name">{{item.name}}</view>
+        </view>
+        <view class="middle1">
+          <image class='icon' mode='widthFix' src='../images/icon-xn.png'/>
+          <view class="s1">星能</view>
+          <view class="xn">{{item.starNum}}</view>
         </view>
         <view class="right">
-          <view class="t1">{{item.name}}</view>
-          <view class="t2">星能：{{item.starNum}}</view>
-          <button class='btn' @tap="linkDabang({{item.workId}}, {{item.name}}, {{item.imageUrl}}, {{item.region}})">打榜</button> 
+          <image class='icon' mode='widthFix' src='../images/btn-dabang.png'/>
         </view>
       </view>
     </view>
@@ -445,10 +401,15 @@ page{
       weekRankloadMore: 1,//分页加载，每次加载10条
       guard: [],//我的守候
       time: '',
-      showLoading: true,//是否显示loading图
+      showLoading: true,//是否显示loading图,
+      guanzhuActive: false,//弹出关注公众号
     }
 
     methods = {
+      guanzhuFn(){
+          this.guanzhuActive = !this.guanzhuActive;
+          this.setData({guanzhuActive: this.guanzhuActive});
+      },
       /* 分享给用户 */
       onShareAppMessage(res) {
           //console.log(res);

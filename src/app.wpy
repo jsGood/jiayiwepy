@@ -123,6 +123,7 @@ export default class extends wepy.app {
   config = {
     pages: [
       'pages/index',
+      'pages/call',
       'pages/inviteFriend',
       'pages/dabang',
       'pages/myWeixinRed',
@@ -145,9 +146,9 @@ export default class extends wepy.app {
       navigationBarTextStyle: 'white'
     },
     tabBar: {
-      color: "#999",
-      selectedColor: "#fb5488",
-      backgroundColor: "#f7f7fa",
+      color: "#7F8389",
+      selectedColor: "#FF7F7F",
+      backgroundColor: "#fff",
       borderStyle: "black",
       list: [
         {
@@ -155,6 +156,12 @@ export default class extends wepy.app {
           "iconPath": "images/icon-home.png",
           "pagePath": "pages/index",
           "text": "首页"
+        },
+        {
+          "selectedIconPath": "images/icon-call.png",
+          "iconPath": "images/icon-call.png",
+          "pagePath": "pages/call",
+          "text": "打call",
         },
         {
           "selectedIconPath": "images/icon-me-active.png",
