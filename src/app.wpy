@@ -123,7 +123,6 @@ export default class extends wepy.app {
   config = {
     pages: [
       'pages/index',
-      'pages/up',//测试
       'pages/firstScreen',//首屏
       'pages/inviteFriend',
       'pages/dabang',
