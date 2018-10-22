@@ -26,7 +26,7 @@ page{
 }
 
 .cont-guanzhu{ 
-    margin: 0rpx 0 -70rpx;
+    margin: 5rpx 0 -70rpx;
     .box{ 
       display: flex; 
       justify-content: flex-end;
@@ -51,6 +51,7 @@ page{
 /* 总榜、周榜 */
 .cont-tab{
   padding: 0 0 18rpx;
+  margin-top: 25rpx;
   position: relative;
   .duihuan{ 
     position: absolute;
@@ -227,6 +228,7 @@ page{
 }
 </style>
 
+
 <template>
 
     <!-- 现金红包弹窗 -->
@@ -322,7 +324,7 @@ page{
       <view class="items">
         <view class="list {{typeActive==1?'active':''}}" @tap="getTypeFn(1)"><image mode='widthFix' src="../images/tab1.png"/></view>
         <view class="list {{typeActive==2?'active':''}}" @tap="getTypeFn(2)"><image mode='widthFix' src="../images/tab2.png"/></view>   
-        <view class="list {{typeActive==3?'active':''}}" @tap="getTypeFn(3)"><image mode='widthFix' src="../images/tab3.png"/></view>  
+        <view class="list {{typeActive==4?'active':''}}" @tap="getTypeFn(4)"><image mode='widthFix' src="../images/tab3.png"/></view>  
       </view>
 
 <!--       <swiper indicator-dots="{{indicatorDots}}" duration="{{duration}}">   
@@ -395,6 +397,7 @@ page{
       isShowModalRedXNKai: true,
       tabsActive: 1,//总榜、周榜tab高亮
       typeActive: 1,//国漫、日漫tab高亮
+      region: 1,//1：国漫，2：日漫，4：美漫
       qian3Array: [],//前3名
       itemsArray: [],//总列表
       totalRankloadMore: 1,//分页加载，每次加载10条
@@ -562,11 +565,11 @@ page{
           this.getWeekRank(1);
         }
       },
-      //切换国漫、日漫
-      getTypeFn(index){
+      //切换国漫、日漫、美漫
+      getTypeFn(region){
         this.totalRankloadMore = 1;
         this.weekRankloadMore = 1;
-        this.typeActive = index;
+        this.region = region;
         if(this.tabsActive==1){
           this.getTotalRank(1);
         }else{
@@ -579,7 +582,7 @@ page{
         //this.showLoading = false;
         util.loading();
         if(this.tabsActive==1){
-          this.totalRankloadMore = ++this.totalRankloadMore
+          this.totalRankloadMore = ++this.totalRankloadMore;
           loadMore = this.totalRankloadMore;
         }else{
           this.weekRankloadMore = ++this.weekRankloadMore
@@ -590,6 +593,8 @@ page{
         for(let i=(loadMore-1)*10;i<loadMore*10;i++){
           if(this.itemsArray[i]){
             this.itemsArray[i].activity = true;
+          }else{
+            wx.showToast({title: '没有更多数据了！',icon: 'none', duration: 1000});
           }   
         } 
         this.setData({ itemsArray: this.itemsArray});
@@ -600,7 +605,7 @@ page{
       }
     }
     //月榜
-    getTotalRank(loadMoreNumber){
+    getTotalRank(loadMoreNumber, index){
       let that = this;
       ///console.log('月榜');
       //console.log(this.userInfo);
@@ -608,7 +613,7 @@ page{
           url: 'program/rank/totalRanking',
           data: {
             type: 1,
-            region: this.typeActive, //1：国漫，2：日漫
+            region: this.region, //1：国漫，2：日漫，4：美漫
             uId: this.userInfo.uId,
           }
       };
@@ -630,7 +635,6 @@ page{
             that.itemsArray[i].activity = true;
           } 
           this.setData({
-            //qian3Array: this.qian3Array,
             itemsArray: this.itemsArray,
             time: this.time
           });
@@ -645,12 +649,11 @@ page{
     getWeekRank(loadMoreNumber){
       let that = this;
       console.log('周榜');
-      //console.log(this.userInfo);
       let params = {
           url: 'program/rank/weekRanking',
           data: {
             type: 2,
-            region: this.typeActive, //1：国漫，2：日漫
+            region: this.region, //1：国漫，2：日漫, 4：美漫
             uId: this.userInfo.uId,
           }
       };

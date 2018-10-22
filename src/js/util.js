@@ -1,6 +1,6 @@
 const util = {
-	//api: 'http://192.168.0.97:8090/', 
-    api: 'https://api.jiayiworld.com/', 
+	api: 'http://192.168.0.100:8090/', 
+    //api: 'https://api.jiayiworld.com/', 
     //api: 'https://test.jiayiworld.com/',    
     data: {
         //timestamp: new Date().getTime(), 
